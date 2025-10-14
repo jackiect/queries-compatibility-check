@@ -26,7 +26,7 @@
 https://ap-southeast-1.console.aws.amazon.com/cloudshell/home?region=ap-southeast-1
 
 ```shell
-git clone https://github.com/aws-samples/queries-compatibility-check.git
+git clone https://github.com/jackiect/queries-compatibility-check.git
 
 cd queries-compatibility-check
 
