@@ -38,7 +38,7 @@ def get_eni_for_ip(ip):
     response = ec2_client.describe_network_interfaces(
         Filters=[
             {
-                'Name': 'addresses.private-ip-address',
+                'Name': 'addresses.association.public-ip',
                 'Values': [
                     ip,
                 ]

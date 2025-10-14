@@ -41,7 +41,7 @@ class LambdaFunction(Construct):
             timeout=Duration.seconds(60),
             function_name='db-check-validate-query-{}'.format(params['env_name']),
             layers=[validate_python_layer],
-            allow_public_subnet=False,
+            allow_public_subnet=True,
             vpc=vpc,
             memory_size=1024,
             security_groups=[sg],

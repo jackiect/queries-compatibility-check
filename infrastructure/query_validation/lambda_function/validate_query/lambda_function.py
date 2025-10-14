@@ -96,6 +96,21 @@ def check_for_mysql_syntax(query):
     return query_results
 
 
+def check_by_doing_execution(query):
+    """
+        Checks if a given SQL query is valid with actually execute it.
+
+        Args:
+            query (str): The MySQL query to be executed.
+
+        Returns:
+            int: The number of rows affected by the executed query.
+    """
+    cur = conn.cursor()
+    cur.execute(query)
+    return cur.rowcount
+
+
 def replace_strings(match):
     return "*" * len(match.group())
 

@@ -18,7 +18,7 @@ class Aurora(Construct):
         cluster = rds.DatabaseCluster(self, "validation_db",
                                       cluster_identifier=f"validation-db-{env_name}",
                                       engine=rds.DatabaseClusterEngine.aurora_mysql(
-                                          version=rds.AuroraMysqlEngineVersion.VER_3_04_1),
+                                          version=rds.AuroraMysqlEngineVersion.VER_3_10_1),
                                       credentials=rds.Credentials.from_generated_secret("admin"),
                                       writer=rds.ClusterInstance.provisioned("writer",
                                                                              instance_identifier=f"validation-writer-{env_name}",
