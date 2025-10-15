@@ -1,0 +1,35 @@
+@DOMAIN=
+@API_KEY=
+
+### Start Mirror Task
+// @name start_task
+// @prompt rdb_name
+POST https://{{DOMAIN}}/prod/task
+x-api-key: {{API_KEY}}
+Content-Type: application/json
+
+{
+    "cluster_identifier": "{{rdb_name}}",
+    "traffic_window": 1
+}
+
+
+####
+@task_id = {{start_task.response.body.$.task_id}}
+
+
+### Get Mirror Task Status
+// @name task_status
+GET https://{{DOMAIN}}/prod/task?task_id={{task_id}}
+x-api-key: {{API_KEY}}
+
+
+### Stop Mirror Task
+// @name stop_task
+PUT https://{{DOMAIN}}/prod/task
+x-api-key: {{API_KEY}}
+Content-Type: application/json
+
+{
+    "task_id": "{{task_id}}"
+}
