@@ -33,9 +33,11 @@ def update_task_db(task_id, report_s3_key):
 def get_failed_items(task_id):
     csv_items = []
 
+    filter_cond = boto3.dynamodb.conditions.Attr('status').eq('Failed') | boto3.dynamodb.conditions.Attr('status').eq('CheckedSample')
+
     response = log_table.query(
         KeyConditionExpression=boto3.dynamodb.conditions.Key('task_id').eq(task_id),
-        FilterExpression=boto3.dynamodb.conditions.Attr('status').eq('Failed'),
+        FilterExpression=filter_cond,
         ProjectionExpression='task_id, #query, src, src_port, message',
         ExpressionAttributeNames={
             '#query': 'query',
@@ -51,7 +53,7 @@ def get_failed_items(task_id):
     while 'LastEvaluatedKey' in response:
         response = log_table.query(
             KeyConditionExpression=boto3.dynamodb.conditions.Key('task_id').eq(task_id),
-            FilterExpression=boto3.dynamodb.conditions.Attr('status').eq('Failed'),
+            FilterExpression=filter_cond,
             ProjectionExpression='task_id, #query, src, src_port, message',
             ExpressionAttributeNames={
                 '#query': 'query',

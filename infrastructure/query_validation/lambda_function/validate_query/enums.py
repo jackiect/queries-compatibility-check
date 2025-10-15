@@ -13,3 +13,4 @@ class QueryLog(Enum):
     CREATED = 'Created'
     FAILED = 'Failed'
     CHECKED = 'Checked'
+    CHECKED_SAMPLE = 'CheckedSample'

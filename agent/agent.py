@@ -32,6 +32,8 @@ command = [
                 'mysql.query',
                 '-e',
                 'mysql.field.type',
+                '-e',
+                'ip.src_host',
                 '-Y',
                 '(mysql.command==3 or mysql.command==22) and mysql and tcp.srcport!=3306',
                 # '(mysql.command==3 or mysql.command==22 or mysql.command==23) and mysql and tcp.srcport!=3306',
@@ -190,7 +192,7 @@ def process_output(output):
     result = {
                 'task_id': task_id,
                 'time': output_string_array[0],
-                'src': output_string_array[1],
+                'src': output_string_array[1] + '_' + output_string_array[6],
                 'src_port': output_string_array[2],
                 'command': output_string_array[3],
                 'query': '',

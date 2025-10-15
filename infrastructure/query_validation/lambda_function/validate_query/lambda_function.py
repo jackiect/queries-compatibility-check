@@ -2,6 +2,7 @@ import pymysql
 import boto3
 import os
 import re
+import random
 import json
 import logging
 from enums import Task, QueryLog
@@ -276,6 +277,18 @@ def lambda_handler(event, context):
         except Exception as e:
             status = QueryLog.FAILED.value
             message = message + str(e)
+
+        if status == QueryLog.CHECKED.value:
+            if random.random() < 0.05:
+                # 这里实现基于 len(ddb_records) 的样本5% 取样
+                status = QueryLog.CHECKED_SAMPLE.value
+                message = message + 'Success Sample; '
+            else:
+                ql = query.tolower()
+                if  'insert' in ql or 'update' in ql or 'delete' in ql:
+                    # 非查询语句全部视为成功样本
+                    status = QueryLog.CHECKED_SAMPLE.value
+                    message = message + 'Success Sample; '
 
         # Define the key of the item to update
         key = {
