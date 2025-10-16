@@ -77,12 +77,12 @@ Request body:
 ```json
 {
     "cluster_identifier": "string",
-    "traffic_window": 2
+    "traffic_window": 10
 }
 ```
 
 
-cluster_identifier为数据库identifier。traffic_window为流量采集时长，单位为小时。
+cluster_identifier为数据库identifier。traffic_window为流量采集时长，单位为分钟。
 
 Response:
 ```json
@@ -109,7 +109,7 @@ Response, Response的内容与task的status有关 :
     "checked_query": 3, # 已完成检查的query数量
     "failed_query": 2, # 出错的query数量
     "created_time": "2024-03-29T07:39:34.354Z",
-    "traffic_window": 1,
+    "traffic_window": 10,
     "complete_percentage": "100%", # 已经过去的时间/采集的总时间 * 100%
     "start_capture_time": "2024-03-29T07:40:58.354Z", # 开始采集第一批query的时间
     "end_time": "2024-03-29T08:39:50.354Z", # 任务结束/停止时间

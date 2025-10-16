@@ -71,7 +71,7 @@ def lambda_handler(event, context):
     traffic_window = event['traffic_window']
 
     now = datetime.now()
-    stop_time = now + timedelta(hours=traffic_window)
+    stop_time = now + timedelta(minutes=traffic_window)
     iso_time_with_utc_offset = '{}+00:00'.format(stop_time.isoformat())
     database_info['stop_time'] = iso_time_with_utc_offset
     

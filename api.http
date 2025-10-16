@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "cluster_identifier": "{{rdb_name}}",
-    "traffic_window": 1
+    "traffic_window": 10
 }
 
 

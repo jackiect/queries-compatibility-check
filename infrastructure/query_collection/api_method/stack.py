@@ -43,7 +43,7 @@ class ApiMethod(Construct):
                 schema=None,
                 type=aws_apigateway.JsonSchemaType.OBJECT,
                 properties={
-                    "traffic_window": aws_apigateway.JsonSchema(type=aws_apigateway.JsonSchemaType.INTEGER, maximum=100, minimum=1),
+                    "traffic_window": aws_apigateway.JsonSchema(type=aws_apigateway.JsonSchemaType.INTEGER, maximum=60*24*7, minimum=1),
                     "cluster_identifier": aws_apigateway.JsonSchema(type=aws_apigateway.JsonSchemaType.STRING)
                 },
                 required=["traffic_window", "cluster_identifier"]

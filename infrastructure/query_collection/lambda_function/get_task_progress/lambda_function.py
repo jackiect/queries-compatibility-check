@@ -42,14 +42,14 @@ def get_task_complete_percentage(create_time: str, traffic_window: int):
 
         Args:
             create_time (str): The creation time of the task in the format '%Y-%m-%dT%H:%M:%S.%f%z'.
-            traffic_window (int): The duration of the traffic window in hours.
+            traffic_window (int): The duration of the traffic window in minutes.
 
         Returns:
             str: The completion percentage formatted as a string with two decimal places, followed by '%'.
                  If the task has exceeded the traffic window duration, it returns '100%'.
     """
 
-    traffic_window_seconds = traffic_window * 3600
+    traffic_window_seconds = traffic_window * 60
     create_datetime = datetime.strptime(create_time, '%Y-%m-%dT%H:%M:%S.%f%z')
 
     current_time = datetime.now()
