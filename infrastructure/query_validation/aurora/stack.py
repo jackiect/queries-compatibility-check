@@ -27,14 +27,6 @@ class Aurora(Construct):
                                                                                  ec2.InstanceClass.R5,
                                                                                  ec2.InstanceSize.LARGE)
                                                                              ),
-                                      readers=[
-                                          rds.ClusterInstance.provisioned("reader",
-                                                                          instance_identifier=f"validation-reader-{env_name}",
-                                                                          instance_type=ec2.InstanceType.of(
-                                                                              ec2.InstanceClass.R5,
-                                                                              ec2.InstanceSize.LARGE),
-                                                                          ),
-                                      ],
                                       vpc_subnets=ec2.SubnetSelection(subnets=private_subnets),
                                       vpc=vpc,
                                       security_groups=[sg],
